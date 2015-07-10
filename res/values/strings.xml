@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">青果网</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+	<string name="guide_one_main">我们都在使用青果网</string>
+	<string name="guide_one_sub">你还在等什么?</string>
+	<string name="guide_two_main">神从创造中找到他自己</string>
+	<string name="guide_two_sub">-泰戈尔·雪狼骑兵</string>
+	<string name="guide_three_main">生命不息</string>
+	<string name="guide_three_sub">奋斗不止</string>
+</resources>
