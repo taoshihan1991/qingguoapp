@@ -10,4 +10,7 @@
 	<string name="guide_two_sub">-泰戈尔·雪狼骑兵</string>
 	<string name="guide_three_main">生命不息</string>
 	<string name="guide_three_sub">奋斗不止</string>
+	
+	<string name="back_btn_arrow">&lt;</string>
+	<string name="no_picture">暂无图片</string>
 </resources>

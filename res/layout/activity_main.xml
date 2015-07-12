@@ -1,10 +1,108 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#0FA063"
+    android:id="@android:id/tabhost"
     >
+	<LinearLayout 
+		android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:orientation="vertical"
+	    >
+	    <FrameLayout 
+	        android:layout_width="match_parent"
+	    	android:layout_height="0dp"
+	    	android:id="@android:id/tabcontent"
+	    	android:layout_weight="1"
+	        ></FrameLayout>
 
-</LinearLayout>
+	    <TabWidget
+	        android:id="@android:id/tabs"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:visibility="gone"
+	         >
+	    </TabWidget>
+	    <LinearLayout 
+		android:layout_width="match_parent"
+	    android:layout_height="50dp"
+	    android:orientation="vertical"
+	    >
+	    <TextView 
+		     android:layout_width="match_parent"
+		     android:layout_height="1dp"
+		     android:background="#D0D0D0"
+		     />	   
+	    <RadioGroup 
+	        android:layout_width="match_parent"
+	        android:layout_height="49dp"
+	        android:id="@+id/myTabs"
+	        android:layout_gravity="bottom"
+	        
+	        android:orientation="horizontal"
+	        android:background="#F8F8F8"
+	        >
+ 
+	        <RadioButton
+    		    android:id="@+id/radio_button0"
+    			android:text="印记"
+    			android:textColor="@drawable/selector_bottom_text_tab"
+    			android:textSize="12sp"
+    			android:ellipsize="marquee"
+    			android:gravity="center"
+    			android:layout_width="match_parent"
+    			android:layout_height="match_parent"
+    			android:layout_weight="1"
+    			android:button="@null"
+    			android:background="@drawable/selector_bottom_tab"
+    			android:checked="true"
+    
+    			/>
+    		<RadioButton
+    		    android:id="@+id/radio_button1"
+    			android:text="音乐"
+    			android:textColor="@drawable/selector_bottom_text_tab"
+    			android:textSize="12sp"
+    			android:ellipsize="marquee"
+    			android:gravity="center"
+    			android:layout_width="match_parent"
+    			android:layout_height="match_parent"
+    			android:button="@null"
+    			android:layout_weight="1"
+    			android:background="@drawable/selector_bottom_tab"
+    
+    			/>
+    		<RadioButton
+    		    android:id="@+id/radio_button2"
+    			android:text="文档"
+    			android:textColor="@drawable/selector_bottom_text_tab"
+    			android:textSize="12sp"
+    			android:ellipsize="marquee"
+    			android:gravity="center"
+    			android:layout_width="match_parent"
+    			android:layout_height="match_parent"
+    			android:button="@null"
+    			android:layout_weight="1"
+    			android:background="@drawable/selector_bottom_tab"
+    
+    			/>
+    		<RadioButton
+    		    android:id="@+id/radio_button3"
+    			android:text="更多"
+    			android:textColor="@drawable/selector_bottom_text_tab"
+    			android:textSize="12sp"
+    			android:ellipsize="marquee"
+    			android:gravity="center"
+    			android:layout_width="match_parent"
+    			android:layout_height="match_parent"
+    			android:button="@null"
+    			android:layout_weight="1"
+    			android:background="@drawable/selector_bottom_tab"
+    
+    			/>
+	    </RadioGroup>
+	    </LinearLayout>
+	</LinearLayout>
+</TabHost>
+
 
