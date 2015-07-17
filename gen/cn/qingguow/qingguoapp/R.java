@@ -29,24 +29,30 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
-        public static final int navigator=0x7f020001;
+        public static final int line=0x7f020001;
         public static final int selector_bottom_tab=0x7f020002;
         public static final int selector_bottom_text_tab=0x7f020003;
         public static final int selector_top_back=0x7f020004;
         public static final int shape_bottom_tab=0x7f020005;
-        public static final int shape_top_back=0x7f020006;
+        public static final int shape_scoll_tab=0x7f020006;
+        public static final int shape_top_back=0x7f020007;
     }
     public static final class id {
-        public static final int guideFlipper=0x7f080001;
-        public static final int listMainTitle=0x7f080008;
-        public static final int listSubTitle=0x7f080009;
-        public static final int listThumb=0x7f080007;
-        public static final int myTabs=0x7f080002;
-        public static final int newsListView=0x7f080000;
-        public static final int radio_button0=0x7f080003;
-        public static final int radio_button1=0x7f080004;
-        public static final int radio_button2=0x7f080005;
-        public static final int radio_button3=0x7f080006;
+        public static final int cursor=0x7f080003;
+        public static final int guideFlipper=0x7f080005;
+        public static final int listMainTitle=0x7f08000c;
+        public static final int listSubTitle=0x7f08000d;
+        public static final int listThumb=0x7f08000b;
+        public static final int myTabs=0x7f080006;
+        public static final int newsListView=0x7f08000e;
+        public static final int radio_button0=0x7f080007;
+        public static final int radio_button1=0x7f080008;
+        public static final int radio_button2=0x7f080009;
+        public static final int radio_button3=0x7f08000a;
+        public static final int toptab1=0x7f080000;
+        public static final int toptab2=0x7f080001;
+        public static final int toptab3=0x7f080002;
+        public static final int vPager=0x7f080004;
     }
     public static final class layout {
         public static final int activity_article_detail=0x7f030000;
@@ -54,6 +60,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int activity_guide=0x7f030002;
         public static final int activity_main=0x7f030003;
         public static final int listview_article_item=0x7f030004;
+        public static final int listview_article_list=0x7f030005;
     }
     public static final class string {
         public static final int app_name=0x7f060000;

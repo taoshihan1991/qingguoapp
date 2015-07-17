@@ -33,6 +33,10 @@
             android:name="cn.qingguow.qingguoapp.ArticleDetailActivity"
             >
         </activity>
+         <uses-library  android:name="android.test.runner"/>
     </application>
 
+    	<!-- 单元测试 -->
+    <instrumentation android:name="android.test.InstrumentationTestRunner"
+	    android:targetPackage="cn.qingguow.qingguoapp" android:label="测试" />
 </manifest>

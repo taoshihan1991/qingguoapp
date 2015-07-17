@@ -4,23 +4,41 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import android.R.integer;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.os.Bundle;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.support.v4.widget.SimpleCursorAdapter.ViewBinder;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
-
-
-@SuppressLint("ShowToast") public class ArticleListActivity extends Activity {
+public class ArticleListActivity extends Activity {
 	private int category_id;
-	private ListView listView;
+	private TextView t1,t2,t3;
+	private ViewPager mPager;
+	private List<View> listViews;
+	private ImageView cursor;
+	private int bmpW;
+	private int offset;
+	private int currIndex;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,14 +48,146 @@ import android.widget.Toast;
         category_id=intent.getIntExtra("category_id", 0);
 
 		setContentView(R.layout.activity_article_list);
-        getMainNewsList();
-        openDetailActivity();
+		//初始化头标
+		initTextView();
+		//初始化下划线
+		InitImageView();
+		//初始化ViewPager
+		initViewPager();
+		
+        //getMainNewsList();
+        //openDetailActivity();
+    }
+    private void InitImageView() {
+    	 cursor = (ImageView) findViewById(R.id.cursor);
+         bmpW = BitmapFactory.decodeResource(getResources(), R.drawable.line)
+                 .getWidth();// 获取图片宽度
+         DisplayMetrics dm = new DisplayMetrics();
+         getWindowManager().getDefaultDisplay().getMetrics(dm);
+         int screenW = dm.widthPixels;// 获取分辨率宽度
+         offset = (screenW / 3 - bmpW) / 2;// 计算偏移量
+         Matrix matrix = new Matrix();
+         matrix.postTranslate(offset, 0);
+         cursor.setImageMatrix(matrix);// 设置动画初始位置
+	}
+    /**
+     * 页卡切换监听
+*/
+    public class MyOnPageChangeListener implements OnPageChangeListener {
+
+        int one = offset * 2 + bmpW;// 页卡1 -> 页卡2 偏移量
+        int two = one * 2;// 页卡1 -> 页卡3 偏移量
+
+        @Override
+        public void onPageSelected(int arg0) {
+            Animation animation = null;
+            switch (arg0) {
+            case 0:
+                if (currIndex == 1) {
+                    animation = new TranslateAnimation(one, 0, 0, 0);
+                } else if (currIndex == 2) {
+                    animation = new TranslateAnimation(two, 0, 0, 0);
+                }
+                break;
+            case 1:
+                if (currIndex == 0) {
+                    animation = new TranslateAnimation(offset, one, 0, 0);
+                } else if (currIndex == 2) {
+                    animation = new TranslateAnimation(two, one, 0, 0);
+                }
+                break;
+            case 2:
+                if (currIndex == 0) {
+                    animation = new TranslateAnimation(offset, two, 0, 0);
+                } else if (currIndex == 1) {
+                    animation = new TranslateAnimation(one, two, 0, 0);
+                }
+                break;
+            }
+            currIndex = arg0;
+            animation.setFillAfter(true);// True:图片停在动画结束位置
+            animation.setDuration(300);
+            cursor.startAnimation(animation);
+        }
+
+        @Override
+        public void onPageScrolled(int arg0, float arg1, int arg2) {
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int arg0) {
+        }
+    }
+	/*
+     * 初始化页头
+     */
+	private void initTextView() {
+		t1=(TextView)findViewById(R.id.toptab1);
+		t2=(TextView)findViewById(R.id.toptab2);
+		t3=(TextView)findViewById(R.id.toptab3);
+		t1.setOnClickListener(new MyOnClickListener(1));
+		t2.setOnClickListener(new MyOnClickListener(2));
+		t3.setOnClickListener(new MyOnClickListener(3));
+	}
+    public class MyOnClickListener implements View.OnClickListener{
+    	private int index;
+		public MyOnClickListener(int i) {
+			this.index=i-1;
+		}
+
+		@Override
+		public void onClick(View arg0) {
+			mPager.setCurrentItem(index);
+		}
+    	
     }
     /*
+     * 初始化ViewPager
+     */
+    private void initViewPager() {
+    	mPager=(ViewPager) findViewById(R.id.vPager);
+    	listViews=new ArrayList<View>();
+    	LayoutInflater mLayoutInflater=getLayoutInflater();
+    	listViews.add(mLayoutInflater.inflate(R.layout.listview_article_list, null));
+    	listViews.add(mLayoutInflater.inflate(R.layout.listview_article_list, null));
+    	listViews.add(mLayoutInflater.inflate(R.layout.listview_article_list, null));
+    	ListView view1= (ListView)listViews.get(0).findViewById(R.id.newsListView);
+    	getMainNewsList(view1);
+    	openDetailActivity(view1);
+		mPager.setAdapter(new MyPagerAdapter(listViews));
+    	mPager.setCurrentItem(0);
+    	mPager.setOnPageChangeListener(new MyOnPageChangeListener());
+	}
+    public class MyPagerAdapter extends PagerAdapter{
+
+		private List<View> mListViews;
+
+		public MyPagerAdapter(List<View> listViews) {
+			this.mListViews=listViews;
+		}
+		 @Override
+		public void destroyItem(View arg0, int arg1, Object arg2) {
+			 ((ViewPager) arg0).removeView(mListViews.get(arg1));
+		}
+		@Override
+		public int getCount() {
+			return mListViews.size();
+		}
+		@Override
+		public Object instantiateItem(View arg0, int arg1) {
+			((ViewPager) arg0).addView(mListViews.get(arg1), 0);
+			return mListViews.get(arg1);
+		}
+		@Override
+		public boolean isViewFromObject(View arg0, Object arg1) {
+			return arg0 == (arg1);
+		}
+    	
+    }
+	/*
      * 获取主要的文章列表部分
      */
-	private void getMainNewsList() {
-		listView=(ListView)findViewById(R.id.newsListView);
+	private void getMainNewsList(ListView listView) {
 		List<HashMap<String, Object>> data=getListData();
 		
 		String[] listKeyStrings= new String[]{"listMainTitle","listSubTitle"};
@@ -101,8 +251,8 @@ import android.widget.Toast;
 	/*
 	 * 查看详情
 	 */
-	public void openDetailActivity(){
-		listView.setOnItemClickListener(new OnItemClickListener() {
+	public void openDetailActivity(ListView liseview){
+		liseview.setOnItemClickListener(new OnItemClickListener() {
 			@SuppressWarnings("unchecked")
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,

@@ -4,7 +4,7 @@
 		android:layout_width="match_parent"
 	    android:layout_height="match_parent"
 	    android:orientation="vertical"
-	    android:background="#fff"
+	    android:background="#78A500"
 	 >
 	 <RelativeLayout 
 	     android:layout_width="match_parent"
@@ -39,12 +39,62 @@
 		     android:layout_alignParentBottom="true"
 		     />	     
 	 </RelativeLayout>
-   			<ListView 
-   			    android:layout_width="match_parent"
-   			    android:layout_height="wrap_content"
-   			    android:id="@+id/newsListView"
-   			    android:listSelector="@drawable/selector_bottom_tab"
-   			  />
+	 <LinearLayout 
+	     android:layout_width="match_parent"
+	     android:layout_height="40dp"
+	     android:orientation="horizontal"
+	     android:background="#81B60E"
+	     android:gravity="center_vertical"
+	     >
+	     <TextView 
+	         android:layout_width="wrap_content"
+	         android:layout_height="wrap_content"
+	         android:text="推荐"
+	         android:textSize="18dp"
+	         android:textColor="#fff"
+	         android:layout_weight="1"
+	         android:gravity="center"
+	         android:id="@+id/toptab1"
+	         />
+	     <TextView 
+	         android:layout_width="wrap_content"
+	         android:layout_height="wrap_content"
+	         android:text="收藏"
+	         android:textColor="#fff"
+	         android:textSize="18dp"
+	         android:layout_weight="1"
+	         android:gravity="center"
+	         android:id="@+id/toptab2"
+	         />
+	     <TextView 
+	         android:layout_width="wrap_content"
+	         android:layout_height="wrap_content"
+	         android:text="热榜"
+	         android:textColor="#fff"
+	         android:textSize="18dp"
+	         android:layout_weight="1"
+	         android:gravity="center"
+	         android:id="@+id/toptab3"
+	         />
+	 </LinearLayout>
+	<ImageView
+        android:id="@+id/cursor"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="matrix"
+        android:src="@drawable/line" 
+       />
+	 <android.support.v4.view.ViewPager
+	     android:layout_width="wrap_content"
+	     android:layout_height="wrap_content"
+	     android:layout_gravity="center"
+	     android:layout_weight="1"
+	     android:background="#000"
+	     android:flipInterval="30"
+	     android:persistentDrawingCache="animation"
+	     android:id="@+id/vPager"
+	     />
+
 </LinearLayout>
 
 
