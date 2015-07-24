@@ -88,7 +88,7 @@
     			/>
     		<RadioButton
     		    android:id="@+id/radio_button3"
-    			android:text="更多"
+    			android:text="后院"
     			android:textColor="@drawable/selector_bottom_text_tab"
     			android:textSize="12sp"
     			android:ellipsize="marquee"
@@ -98,7 +98,7 @@
     			android:button="@null"
     			android:layout_weight="1"
     			android:background="@drawable/selector_bottom_tab"
-    
+    			android:onClick="loginAction"
     			/>
 	    </RadioGroup>
 	    </LinearLayout>

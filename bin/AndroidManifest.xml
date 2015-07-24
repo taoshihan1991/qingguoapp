@@ -33,9 +33,13 @@
             android:name="cn.qingguow.qingguoapp.ArticleDetailActivity"
             >
         </activity>
+        <activity
+            android:name="cn.qingguow.qingguoapp.LoginActivity"
+            >
+        </activity>
          <uses-library  android:name="android.test.runner"/>
     </application>
-
+	<uses-permission android:name="android.permission.INTERNET"/>
     	<!-- 单元测试 -->
     <instrumentation android:name="android.test.InstrumentationTestRunner"
 	    android:targetPackage="cn.qingguow.qingguoapp" android:label="测试" />

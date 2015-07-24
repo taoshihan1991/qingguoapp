@@ -1,11 +1,9 @@
 package cn.qingguow.qingguoapp;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
 import android.view.Window;
 
-public class ArticleDetailActivity extends Activity {
+public class ArticleDetailActivity extends CommonActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -13,8 +11,6 @@ public class ArticleDetailActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_article_detail);
     }
-    public void openPrevActivity(View v){
-    	finish();
-    }
+
     
 }

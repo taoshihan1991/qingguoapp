@@ -1,22 +1,27 @@
 package cn.qingguow.qingguoapp;
 
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import android.R.integer;
-import android.annotation.SuppressLint;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.support.v4.widget.SimpleCursorAdapter.ViewBinder;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -34,11 +39,12 @@ public class ArticleListActivity extends Activity {
 	private int category_id;
 	private TextView t1,t2,t3;
 	private ViewPager mPager;
-	private List<View> listViews;
+	private List<View> pages;
 	private ImageView cursor;
 	private int bmpW;
 	private int offset;
 	private int currIndex;
+	private Handler handler;//多线程处理Handler类对象
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -145,16 +151,27 @@ public class ArticleListActivity extends Activity {
      * 初始化ViewPager
      */
     private void initViewPager() {
-    	mPager=(ViewPager) findViewById(R.id.vPager);
-    	listViews=new ArrayList<View>();
-    	LayoutInflater mLayoutInflater=getLayoutInflater();
-    	listViews.add(mLayoutInflater.inflate(R.layout.listview_article_list, null));
-    	listViews.add(mLayoutInflater.inflate(R.layout.listview_article_list, null));
-    	listViews.add(mLayoutInflater.inflate(R.layout.listview_article_list, null));
-    	ListView view1= (ListView)listViews.get(0).findViewById(R.id.newsListView);
-    	getMainNewsList(view1);
-    	openDetailActivity(view1);
-		mPager.setAdapter(new MyPagerAdapter(listViews));
+    	//获取布局文件中的ViewPager对象
+    	mPager=(ViewPager) this.findViewById(R.id.vPager);
+	
+    	//加载页卡
+    	LayoutInflater mLayoutInflater=this.getLayoutInflater();
+    	View view0=mLayoutInflater.inflate(R.layout.listview_article_list, null);
+    	View view1=mLayoutInflater.inflate(R.layout.listview_article_list, null);
+    	View view2=mLayoutInflater.inflate(R.layout.listview_article_list, null);
+    	//设置每个页卡的列表
+    	ListView listview1= (ListView)view0.findViewById(R.id.newsListView);
+    	getMainNewsList(listview1);
+    	openDetailActivity(listview1);
+    	
+    	//设置适配器
+    	pages=new ArrayList<View>();
+    	pages.add(view0);
+    	pages.add(view1);
+    	pages.add(view2);
+    	PagerAdapter mPagerAdapter=new MyPagerAdapter(pages);
+    	mPagerAdapter.notifyDataSetChanged();
+		mPager.setAdapter(mPagerAdapter);
     	mPager.setCurrentItem(0);
     	mPager.setOnPageChangeListener(new MyOnPageChangeListener());
 	}
@@ -182,31 +199,31 @@ public class ArticleListActivity extends Activity {
 		public boolean isViewFromObject(View arg0, Object arg1) {
 			return arg0 == (arg1);
 		}
-    	
+		@Override  
+		public int getItemPosition(Object object) {  
+		    return POSITION_NONE;  
+		} 
     }
 	/*
      * 获取主要的文章列表部分
      */
-	private void getMainNewsList(ListView listView) {
+	private ListView getMainNewsList(ListView listView) {
 		List<HashMap<String, Object>> data=getListData();
 		
 		String[] listKeyStrings= new String[]{"listMainTitle","listSubTitle"};
 		int[] listItemId= new int[]{R.id.listMainTitle,R.id.listSubTitle};
 		ListAdapter adapter = new SimpleAdapter(this, data, R.layout.listview_article_item,listKeyStrings,listItemId);
 		listView.setAdapter(adapter);
+		return listView;
 	}
 	/*
 	 * 组合好要设置的数据
 	 */
 	private List<HashMap<String, Object>> getListData() {
-		ArrayList<HashMap<String, Object>> data = new ArrayList<HashMap<String, Object>>();
-
+		List<HashMap<String, Object>> data = new ArrayList<HashMap<String, Object>>();
+		
 		if(category_id==1){
-			HashMap<String, Object> hashMap=new HashMap<String, Object>();
-			hashMap.put("listMainTitle", "生活中遇到许多似曾相识的过客");
-			hashMap.put("listSubTitle", "深觉这么近，却又那么远");
-			hashMap.put("id", 1);
-			data.add(hashMap);			
+			data=getInternetData();	
 		}else{
 			{
 			HashMap<String, Object> hashMap=new HashMap<String, Object>();
@@ -247,7 +264,62 @@ public class ArticleListActivity extends Activity {
 		}	
 		return data;
 	}
+	/*
+	 * 获取网络数据
+	 */
+	private List<HashMap<String, Object>> getInternetData() {
+		final List<HashMap<String, Object>> data=new ArrayList<HashMap<String,Object>>();
+		handler=new Handler(){
+			@Override
+			public void handleMessage(Message msg) {
+				if(msg.what==1){
+					String json=(String)msg.obj;
+					
+					try {
+						
+						JSONArray jsonArray = new JSONArray(json);
+						for(int i=0;i<jsonArray.length();i++){
+							HashMap<String, Object> hashMap=new HashMap<String, Object>();
+							JSONObject jsonObject=jsonArray.getJSONObject(i);
+							hashMap.put("id", jsonObject.getInt("id"));
+							hashMap.put("listSubTitle","");
+							hashMap.put("listMainTitle", jsonObject.getString("title"));
+							data.add(hashMap);
+						}
+						
+					} catch (JSONException e) {}
 
+				}
+			}
+		};
+		new Thread(){
+			public void run(){
+				try {
+					URL url=new URL("http://www.qingguow.cn/index.php/index/getJsonArticle/");
+					HttpURLConnection conn=(HttpURLConnection)url.openConnection();
+					conn.setRequestMethod("GET");
+					conn.setConnectTimeout(10000);
+					if(conn.getResponseCode()==200){
+						InputStream in=conn.getInputStream();
+						byte[] bytes=new byte[in.available()];
+						int len=0;
+						String json="";
+						while((len=in.read(bytes))!=-1){
+							json+=new String(bytes);
+						}
+						Message msg=new Message();
+						msg.what=1;
+						msg.obj=json;
+						handler.sendMessage(msg);
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}			
+			}
+		}.start();
+
+		return data;
+	}
 	/*
 	 * 查看详情
 	 */

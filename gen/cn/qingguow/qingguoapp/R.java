@@ -32,23 +32,29 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int line=0x7f020001;
         public static final int selector_bottom_tab=0x7f020002;
         public static final int selector_bottom_text_tab=0x7f020003;
-        public static final int selector_top_back=0x7f020004;
-        public static final int shape_bottom_tab=0x7f020005;
-        public static final int shape_scoll_tab=0x7f020006;
-        public static final int shape_top_back=0x7f020007;
+        public static final int selector_login_btn=0x7f020004;
+        public static final int selector_top_back=0x7f020005;
+        public static final int shape_bottom_tab=0x7f020006;
+        public static final int shape_button=0x7f020007;
+        public static final int shape_button_press=0x7f020008;
+        public static final int shape_scoll_tab=0x7f020009;
+        public static final int shape_top_back=0x7f02000a;
     }
     public static final class id {
         public static final int cursor=0x7f080003;
         public static final int guideFlipper=0x7f080005;
-        public static final int listMainTitle=0x7f08000c;
-        public static final int listSubTitle=0x7f08000d;
-        public static final int listThumb=0x7f08000b;
-        public static final int myTabs=0x7f080006;
-        public static final int newsListView=0x7f08000e;
-        public static final int radio_button0=0x7f080007;
-        public static final int radio_button1=0x7f080008;
-        public static final int radio_button2=0x7f080009;
-        public static final int radio_button3=0x7f08000a;
+        public static final int listMainTitle=0x7f08000f;
+        public static final int listSubTitle=0x7f080010;
+        public static final int listThumb=0x7f08000e;
+        public static final int login_btn=0x7f080008;
+        public static final int login_password=0x7f080007;
+        public static final int login_username=0x7f080006;
+        public static final int myTabs=0x7f080009;
+        public static final int newsListView=0x7f080011;
+        public static final int radio_button0=0x7f08000a;
+        public static final int radio_button1=0x7f08000b;
+        public static final int radio_button2=0x7f08000c;
+        public static final int radio_button3=0x7f08000d;
         public static final int toptab1=0x7f080000;
         public static final int toptab2=0x7f080001;
         public static final int toptab3=0x7f080002;
@@ -58,9 +64,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int activity_article_detail=0x7f030000;
         public static final int activity_article_list=0x7f030001;
         public static final int activity_guide=0x7f030002;
-        public static final int activity_main=0x7f030003;
-        public static final int listview_article_item=0x7f030004;
-        public static final int listview_article_list=0x7f030005;
+        public static final int activity_login=0x7f030003;
+        public static final int activity_main=0x7f030004;
+        public static final int listview_article_item=0x7f030005;
+        public static final int listview_article_list=0x7f030006;
     }
     public static final class string {
         public static final int app_name=0x7f060000;
@@ -73,6 +80,13 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int guide_three_sub=0x7f060008;
         public static final int guide_two_main=0x7f060005;
         public static final int guide_two_sub=0x7f060006;
+        public static final int login_btn=0x7f060011;
+        public static final int login_password=0x7f06000e;
+        public static final int login_password_default=0x7f06000f;
+        public static final int login_remeber=0x7f060010;
+        public static final int login_title=0x7f06000b;
+        public static final int login_username=0x7f06000c;
+        public static final int login_username_default=0x7f06000d;
         public static final int no_picture=0x7f06000a;
     }
     public static final class style {
