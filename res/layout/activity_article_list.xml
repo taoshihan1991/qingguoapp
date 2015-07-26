@@ -1,100 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout 
-	    xmlns:android="http://schemas.android.com/apk/res/android"
-		android:layout_width="match_parent"
-	    android:layout_height="match_parent"
-	    android:orientation="vertical"
-	    android:background="#78A500"
-	 >
-	 <RelativeLayout 
-	     android:layout_width="match_parent"
-	     android:layout_height="45dp"
-	     android:background="#81B60E"
-	     >
-	     <TextView 
-	         android:layout_width="40dp"
-	         android:layout_height="45dp"
-	         android:text="@string/back_btn_arrow"
-	         android:textColor="#fff"
-	         android:textSize="20sp"
-	         android:layout_alignParentLeft="true"
-	         android:layout_marginLeft="5dp"
-	         android:gravity="center"
-	         android:background="@drawable/selector_top_back"
-	         android:clickable="true"
-	         android:onClick="gotoPre"
-	         />
-	     <TextView 
-		     android:layout_width="wrap_content"
-		     android:layout_height="wrap_content"
-		     android:text="@string/app_name"
-		     android:textColor="#fff"
-		     android:layout_centerInParent="true"
-		     android:textSize="20sp"
-		     />	
-		 <TextView 
-		     android:layout_width="match_parent"
-		     android:layout_height="2dp"
-		     android:background="#7BAE0F"
-		     android:layout_alignParentBottom="true"
-		     />	     
-	 </RelativeLayout>
-	 <LinearLayout 
-	     android:layout_width="match_parent"
-	     android:layout_height="40dp"
-	     android:orientation="horizontal"
-	     android:background="#81B60E"
-	     android:gravity="center_vertical"
-	     >
-	     <TextView 
-	         android:layout_width="wrap_content"
-	         android:layout_height="wrap_content"
-	         android:text="推荐"
-	         android:textSize="18dp"
-	         android:textColor="#fff"
-	         android:layout_weight="1"
-	         android:gravity="center"
-	         android:id="@+id/toptab1"
-	         />
-	     <TextView 
-	         android:layout_width="wrap_content"
-	         android:layout_height="wrap_content"
-	         android:text="收藏"
-	         android:textColor="#fff"
-	         android:textSize="18dp"
-	         android:layout_weight="1"
-	         android:gravity="center"
-	         android:id="@+id/toptab2"
-	         />
-	     <TextView 
-	         android:layout_width="wrap_content"
-	         android:layout_height="wrap_content"
-	         android:text="热榜"
-	         android:textColor="#fff"
-	         android:textSize="18dp"
-	         android:layout_weight="1"
-	         android:gravity="center"
-	         android:id="@+id/toptab3"
-	         />
-	 </LinearLayout>
-	<ImageView
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#78A500"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="#81B60E" >
+
+        <TextView
+            android:layout_width="40dp"
+            android:layout_height="45dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/selector_top_back"
+            android:clickable="true"
+            android:gravity="center"
+            android:onClick="gotoPre"
+            android:text="@string/back_btn_arrow"
+            android:textColor="#fff"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/app_name"
+            android:textColor="#fff"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_alignParentBottom="true"
+            android:background="#7BAE0F" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#81B60E"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/toptab1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="推荐"
+            android:textColor="#fff"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/toptab2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="收藏"
+            android:textColor="#fff"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/toptab3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="热榜"
+            android:textColor="#fff"
+            android:textSize="18dp" />
+    </LinearLayout>
+
+    <ImageView
         android:id="@+id/cursor"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:scaleType="matrix"
-        android:src="@drawable/line" 
-       />
-	 <android.support.v4.view.ViewPager
-	     android:layout_width="wrap_content"
-	     android:layout_height="wrap_content"
-	     android:layout_gravity="center"
-	     android:layout_weight="1"
-	     android:background="#000"
-	     android:flipInterval="30"
-	     android:persistentDrawingCache="animation"
-	     android:id="@+id/vPager"
-	     />
+        android:src="@drawable/line" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vPager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:background="#000"
+        android:flipInterval="30"
+        android:persistentDrawingCache="animation" />
 
 </LinearLayout>
-
-

@@ -41,36 +41,45 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int shape_top_back=0x7f02000a;
     }
     public static final class id {
-        public static final int cursor=0x7f080003;
-        public static final int guideFlipper=0x7f080005;
-        public static final int listMainTitle=0x7f08000f;
-        public static final int listSubTitle=0x7f080010;
-        public static final int listThumb=0x7f08000e;
-        public static final int login_btn=0x7f080008;
-        public static final int login_password=0x7f080007;
-        public static final int login_username=0x7f080006;
-        public static final int myTabs=0x7f080009;
-        public static final int newsListView=0x7f080011;
-        public static final int radio_button0=0x7f08000a;
-        public static final int radio_button1=0x7f08000b;
-        public static final int radio_button2=0x7f08000c;
-        public static final int radio_button3=0x7f08000d;
-        public static final int toptab1=0x7f080000;
-        public static final int toptab2=0x7f080001;
-        public static final int toptab3=0x7f080002;
-        public static final int vPager=0x7f080004;
+        public static final int article_add_btn=0x7f080002;
+        public static final int article_content=0x7f080001;
+        public static final int article_title=0x7f080000;
+        public static final int cursor=0x7f080006;
+        public static final int guideFlipper=0x7f080008;
+        public static final int listMainTitle=0x7f080013;
+        public static final int listSubTitle=0x7f080014;
+        public static final int listThumb=0x7f080012;
+        public static final int login_btn=0x7f08000c;
+        public static final int login_password=0x7f08000a;
+        public static final int login_remeber=0x7f08000b;
+        public static final int login_username=0x7f080009;
+        public static final int myTabs=0x7f08000d;
+        public static final int newsListView=0x7f080015;
+        public static final int radio_button0=0x7f08000e;
+        public static final int radio_button1=0x7f08000f;
+        public static final int radio_button2=0x7f080010;
+        public static final int radio_button3=0x7f080011;
+        public static final int toptab1=0x7f080003;
+        public static final int toptab2=0x7f080004;
+        public static final int toptab3=0x7f080005;
+        public static final int vPager=0x7f080007;
     }
     public static final class layout {
-        public static final int activity_article_detail=0x7f030000;
-        public static final int activity_article_list=0x7f030001;
-        public static final int activity_guide=0x7f030002;
-        public static final int activity_login=0x7f030003;
-        public static final int activity_main=0x7f030004;
-        public static final int listview_article_item=0x7f030005;
-        public static final int listview_article_list=0x7f030006;
+        public static final int activity_admin=0x7f030000;
+        public static final int activity_article_detail=0x7f030001;
+        public static final int activity_article_list=0x7f030002;
+        public static final int activity_guide=0x7f030003;
+        public static final int activity_login=0x7f030004;
+        public static final int activity_main=0x7f030005;
+        public static final int listview_article_item=0x7f030006;
+        public static final int listview_article_list=0x7f030007;
     }
     public static final class string {
+        public static final int admin_title=0x7f060012;
         public static final int app_name=0x7f060000;
+        public static final int article_add_btn=0x7f060013;
+        public static final int article_content=0x7f060015;
+        public static final int article_title=0x7f060014;
         public static final int back_btn_arrow=0x7f060009;
         public static final int dummy_button=0x7f060001;
         public static final int dummy_content=0x7f060002;
